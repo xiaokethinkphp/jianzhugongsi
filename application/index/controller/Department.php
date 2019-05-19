@@ -2,9 +2,9 @@
 namespace app\index\controller;
 use \think\Controller;
 /**
- * 人员管理类
+ * 单位管理类
  */
-class Person extends Common
+class Department extends Common
 {
     // 人员列表方法
     public function lst()
