@@ -36,7 +36,7 @@
             <div class="tpl-block ">
                 <div class="am-g tpl-amazeui-form">
                     <div class="am-u-sm-12 am-u-md-9">
-                        <form class="am-form am-form-horizontal" id="my_form" method="post" action="/index.php/admin/student/apply">
+                        <form class="am-form am-form-horizontal" id="my_form" method="post" action="{:url('department/add')}">
                             <div class="am-form-group">
                                 <label  class="am-u-sm-3 am-form-label"></label>
                                 <div class="am-u-sm-9">
@@ -46,12 +46,12 @@
                             <div class="am-form-group">
                                 <label for="s_card" class="am-u-sm-3 am-form-label">部门名称</label>
                                 <div class="am-u-sm-9">
-                                    <input type="text" name="s_card" id="s_card" placeholder="请输入部门名称">
+                                    <input type="text" name="name" id="s_card" placeholder="请输入部门名称">
                                 </div>
                             </div>
                             <div class="am-form-group">
                                 <div class="am-u-sm-9 am-u-sm-push-3">
-                                    <button type="button" class="am-btn am-btn-primary" onclick="validate()">添加信息</button>
+                                    <input type="submit" class="am-btn am-btn-primary" name="" value="添加部门">
                                 </div>
                             </div>
                         </form>
@@ -63,6 +63,23 @@
     <script src="__STATIC__/assets/js/jquery.min.js"></script>
     <script src="__STATIC__/assets/js/amazeui.min.js"></script>
     <script src="__STATIC__/assets/js/app.js"></script>
+    <script src="__STATIC__/assets/js/jquery.validate.min.js"></script>
+    <script type="text/javascript">
+        $().ready(function(){
+            $("#my_form").validate({
+                rules:{
+                    name:{
+                        required:true
+                    },
+                },
+                messages:{
+                    name:{
+                        required:"请输入部门名称"
+                    }
+                }
+            })
+        })
+    </script>
 </body>
 
 </html>
