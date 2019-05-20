@@ -18,7 +18,7 @@ class Department extends Common
     public function add()
     {
         if (request()->isPost()) {
-
+            
         } else {
             $title = "添加人员";
             $this->assign("title",$title);
