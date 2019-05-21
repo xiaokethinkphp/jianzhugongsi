@@ -20,7 +20,7 @@ class Department extends Model
     {
         $where['name'] = $data['name'];
         $result = Department::where($where)->find();
-        if ($retult == NULL) {
+        if ($result == NULL) {
             Department::save($data);
             return 0;
         } else {
