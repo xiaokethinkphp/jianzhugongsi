@@ -7,11 +7,12 @@ use \think\Validate;
 class Department extends Validate
 {
     protected $rule = [
-        'name'  =>  "require",
+        'name'  =>  "require|unique:department",
     ];
 
     protected $message = [
-        'name.require'   =>  "请输入部门名称",
+        'name.require'  =>  "请输入部门名称",
+        'name.unique'   =>  "该部门已存在"
     ];
 
 }

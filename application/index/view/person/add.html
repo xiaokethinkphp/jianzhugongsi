@@ -1,6 +1,6 @@
-
 <!doctype html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,14 +17,17 @@
     <link rel="stylesheet" href="__STATIC__/assets/css/admin.css">
     <link rel="stylesheet" href="__STATIC__/assets/css/app.css">
 </head>
+
 <body data-type="generalComponents">
-{include file="common/header"/}
-{include file="common/left"/}
+    {include file="common/header"/}
+
+    {include file="common/left"/}
     <div class="tpl-content-wrapper">
+
         <div class="tpl-portlet-components">
             <div class="portlet-title">
                 <div class="caption font-green bold">
-                    <span class="am-icon-code"></span> 添加部门
+                    <span class="am-icon-code"></span> 添加人员
                 </div>
                 <div class="tpl-portlet-input tpl-fz-ml">
                     <div class="portlet-input input-small input-inline">
@@ -35,57 +38,75 @@
                 </div>
             </div>
             <div class="tpl-block ">
+
                 <div class="am-g tpl-amazeui-form">
+
+
                     <div class="am-u-sm-12 am-u-md-9">
-                        <form class="am-form am-form-horizontal" id="my_form" method="post" action="{:url('department/add')}">
+                        <form class="am-form am-form-horizontal" id="my_form" method="post" action="/index.php/admin/student/apply">
                             <div class="am-form-group">
                                 <label  class="am-u-sm-3 am-form-label"></label>
                                 <div class="am-u-sm-9">
                                     <small id="state" style="color: #F7B824;font-size: 16px;"></small>
                                 </div>
+
                             </div>
                             <div class="am-form-group">
-                                <label for="s_card" class="am-u-sm-3 am-form-label">部门名称</label>
+                                <label for="s_card" class="am-u-sm-3 am-form-label">姓名</label>
                                 <div class="am-u-sm-9">
-                                    <input type="text" name="name" id="s_card" placeholder="请输入部门名称">
+                                    <input type="text" name="name" id="s_card" placeholder="请输入姓名">
                                 </div>
                             </div>
                             <div class="am-form-group">
+                                <label for="s_g_id" class="am-u-sm-3 am-form-label">级别</label>
+                                <div class="am-u-sm-9">
+                                    <select class="am-input-sm am-radius" id="s_g_id" name="s_g_id" onchange="change_class()">
+                                        <option value="" >请选择级别</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="am-form-group">
+                                <label for="s_username" class="am-u-sm-3 am-form-label">姓名</label>
+                                <div class="am-u-sm-9">
+                                    <input type="text" name="s_username" id="s_username" placeholder="请输入姓名">
+                                    <small></small>
+                                </div>
+                            </div>
+                            <div class="am-form-group">
+                                <label for="s_phone" class="am-u-sm-3 am-form-label">手机号</label>
+                                <div class="am-u-sm-9">
+                                    <input type="tel" name="s_phone" id="s_phone" placeholder="输入手机号">
+                                </div>
+                            </div>
+                            <div class="am-form-group">
+                                <label for="s_c_id" class="am-u-sm-3 am-form-label">班级</label>
+                                <div class="am-u-sm-9">
+                                    <select class="am-input-sm am-radius" id="s_c_id"  name="s_c_id">
+                                        <option value="">请选择班级</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="am-form-group">
                                 <div class="am-u-sm-9 am-u-sm-push-3">
-                                    <input type="submit" class="am-btn am-btn-primary" name="" value="添加部门">
+                                    <button type="button" class="am-btn am-btn-primary" onclick="validate()">添加信息</button>
                                 </div>
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
+
         </div>
+
     </div>
+
+
+
     <script src="__STATIC__/assets/js/jquery.min.js"></script>
     <script src="__STATIC__/assets/js/amazeui.min.js"></script>
     <script src="__STATIC__/assets/js/app.js"></script>
-    <script src="__STATIC__/assets/js/jquery.validate.min.js"></script>
-    <script type="text/javascript">
-        $().ready(function(){
-            $("#my_form").validate({
-                rules:{
-                    name:{
-                        required:true,
-                        remote:{
-                            url:"{:url('department/checkDepartmentAjax')}",
-                            type:"post"
-                        }
-                    },
-                },
-                messages:{
-                    name:{
-                        required:"请输入部门名称",
-                        remote:"该部门已存在"
-                    }
-                }
-            })
-        })
-    </script>
+
 </body>
 
 </html>

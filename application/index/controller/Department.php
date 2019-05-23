@@ -39,6 +39,18 @@ class Department extends Common
             $this->assign("title",$title);
             return view();
         }
+
+    }
+
+    // 添加修改部门信息的aJax方法
+    public function checkDepartmentAjax()
+    {
+        if (request()->isAjax()) {
+            $validate = validate("Department");
+            return $validate->check(input('post.'));
+        } else {
+
+        }
     }
 
     // 修改顺序的ajax方法
@@ -46,9 +58,46 @@ class Department extends Common
     {
         if (request()->isAjax()) {
             $post = input("post.");
-            return $post;
+
+            $departmentModel = model("Department");
+            foreach ($post as $key => $value) {
+                $department = $departmentModel->get($key);
+                $department->order = $value;
+                $department->save();
+            }
+            return array("status"=>"1","msg"=>"顺序修改成功");
         } else {
             $this->redirect("admin/department/lst");
+        }
+
+    }
+
+    public function upd($id='')
+    {
+        if (request()->isPost()) {
+            $post = input("post.");
+            $validate = validate("department");
+            if (!$validate->check($post)) {
+                $this->error($validate->getError());
+            }
+            $departmentModel = model("Department");
+            $departmentUpdResult = $departmentModel->isUpdate()->save($post);
+            if ($departmentUpdResult == 1) {
+                $this->success("部门修改成功","department/lst");
+            } else {
+                $this->error("修改失败或部门已存","department/lst");
+            }
+
+            dump($post);
+        } else {
+            $departmentModel = model("Department");
+            $departmentGet = $departmentModel->getDepartmentInfo($id);
+            if (!$departmentGet) {
+                $this->error("该部门不存在！","department/lst");
+            }
+            $this->assign("title","修改部门");
+            $this->assign("departmentGet",$departmentGet);
+            return view();
         }
 
     }

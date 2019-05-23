@@ -42,7 +42,7 @@
                     <!-- <div class="am-g">
                     </div> -->
                     <div class="am-g">
-                        <div class="am-u-sm-12">
+                        <div class="am-u-sm-8">
                             <form class="am-form" id="my_form">
                                 <table class="am-table am-table-striped am-table-hover table-main">
                                     <thead>
@@ -60,11 +60,11 @@
                                             <td style="display:none">{$vo.id}</td>
                                             <td>{$vo.name}</td>
                                             <td>
-                                                <input type="text" name="{$vo.id}" value="{$vo.order}">
+                                                <input type="number" name="{$vo.id}" value="{$vo.order}">
                                             </td>
                                             <td class="am-hide-sm-only">
                                                 <a href="#" class="am-btn am-btn-success">查看</a>
-                                                <a href="#" class="am-btn am-btn-warning">修改</a>
+                                                <a href="{:url('department/upd',array('id'=>$vo.id))}" class="am-btn am-btn-warning">修改</a>
                                                 <a href="#" class="am-btn am-btn-danger">删除</a>
                                             </td>
                                         </tr>
@@ -72,7 +72,7 @@
                                     </tbody>
                                     <hr>
                                 </table>
-                                <button type="button" class="am-btn am-btn-primary" id="order">点击排序</button>
+                                <button type="button" class="am-btn am-btn-primary" id="order">点击修改顺序</button>
                             </form>
                         </div>
 
@@ -104,8 +104,11 @@
                 type: 'POST',
                 data: json
             })
-            .done(function() {
-                console.log("success");
+            .done(function(data) {
+                if (data.status==1) {
+                    alert(data.msg);
+                    window.location.reload();
+                }
             })
             .fail(function() {
                 console.log("error");
