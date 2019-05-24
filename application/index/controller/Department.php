@@ -88,7 +88,6 @@ class Department extends Common
                 $this->error("修改失败或部门已存","department/lst");
             }
 
-            dump($post);
         } else {
             $departmentModel = model("Department");
             $departmentGet = $departmentModel->getDepartmentInfo($id);

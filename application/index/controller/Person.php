@@ -54,4 +54,39 @@ class Person extends Common
         }
 
     }
+
+    public function upd($id='')
+    {
+        if (request()->isPost()) {
+            $post = input("post.");
+            if (!$post) {
+                $this->error("提交错误","person/lst");
+            }
+            $personModel = model("person");
+            $personUpdResult = $personModel->isUpdate(true)->save($post);
+            if ($personUpdResult!==false) {
+                $this->success("人员修改成功","person/lst");
+            } else {
+                $this->error("人员修改失败","person/lst");
+            }
+
+        } else {
+            $title = "人员修改";
+            $this->assign("title",$title);
+
+            $personModel = model("person");
+            $personGet = $personModel->get($id);
+            if (!$personGet) {
+                $this->success("该人员不存在","person/lst");
+            }
+
+            $departmentModel = model("department");
+            $departmentList = $departmentModel->getDepartmentList()->order("order");
+            $this->assign("departmentList",$departmentList);
+
+            $this->assign("personGet",$personGet->getData());
+            return view();
+        }
+
+    }
 }
