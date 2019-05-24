@@ -70,9 +70,9 @@
                                         <tr>
                                             <th class="table-id" style="display:none">ID</th>
                                             <th class="table-title">姓名</th>
-                                            <th class="table-type">
-                                                单位
-                                            </th>
+                                            <th class="table-type">单位</th>
+                                            <th>婚否</th>
+                                            <th>串否</th>
                                             <th class="table-author am-hide-sm-only">休假情况</th>
                                             <th class="table-author am-hide-sm-only">操作</th>
                                         </tr>
@@ -84,6 +84,8 @@
                                             <!-- <td>1</td> -->
                                             <td>{$vo.name}</td>
                                             <td>{$departmentGet.name}</td>
+                                            <td>{$vo.is_marriage}</td>
+                                            <td>{$vo.is_weekend}</td>
                                             <td class="am-hide-sm-only">。。。</td>
                                             <td class="am-hide-sm-only">修改|删除</td>
                                         </tr>

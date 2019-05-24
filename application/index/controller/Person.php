@@ -43,4 +43,15 @@ class Person extends Common
             return view();
         }
     }
+
+    public function checkPersonAjax()
+    {
+        if (request()->isAjax()) {
+            $post = input("post.");
+            return validate("person")->check($post);
+        } else {
+            // code...
+        }
+
+    }
 }
