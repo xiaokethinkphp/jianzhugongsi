@@ -40,10 +40,8 @@
             <div class="tpl-block ">
 
                 <div class="am-g tpl-amazeui-form">
-
-
                     <div class="am-u-sm-12 am-u-md-9">
-                        <form class="am-form am-form-horizontal" id="my_form" method="post" action="/index.php/admin/student/apply">
+                        <form class="am-form am-form-horizontal" id="my_form" method="post" action="{:url('person/add')}">
                             <div class="am-form-group">
                                 <label  class="am-u-sm-3 am-form-label"></label>
                                 <div class="am-u-sm-9">
@@ -58,38 +56,34 @@
                                 </div>
                             </div>
                             <div class="am-form-group">
-                                <label for="s_g_id" class="am-u-sm-3 am-form-label">级别</label>
+                                <label for="s_g_id" class="am-u-sm-3 am-form-label">所属单位</label>
                                 <div class="am-u-sm-9">
-                                    <select class="am-input-sm am-radius" id="s_g_id" name="s_g_id" onchange="change_class()">
-                                        <option value="" >请选择级别</option>
+                                    <select class="am-input-sm am-radius" name="department_id">
+                                        <option value="0">——请选择单位——</option>
+                                        {volist name="departmentList" id="vo"}
+                                        <option value="{$vo.id}">{$vo.name}</option>
+                                        {/volist}
                                     </select>
                                 </div>
                             </div>
                             <div class="am-form-group">
-                                <label for="s_username" class="am-u-sm-3 am-form-label">姓名</label>
+                                <label for="s_username" class="am-u-sm-3 am-form-label">是否结婚</label>
                                 <div class="am-u-sm-9">
-                                    <input type="text" name="s_username" id="s_username" placeholder="请输入姓名">
-                                    <small></small>
-                                </div>
-                            </div>
-                            <div class="am-form-group">
-                                <label for="s_phone" class="am-u-sm-3 am-form-label">手机号</label>
-                                <div class="am-u-sm-9">
-                                    <input type="tel" name="s_phone" id="s_phone" placeholder="输入手机号">
-                                </div>
-                            </div>
-                            <div class="am-form-group">
-                                <label for="s_c_id" class="am-u-sm-3 am-form-label">班级</label>
-                                <div class="am-u-sm-9">
-                                    <select class="am-input-sm am-radius" id="s_c_id"  name="s_c_id">
-                                        <option value="">请选择班级</option>
-                                    </select>
+                                    <input type="radio" name="is_marriage" value="1">是
+                                    <input type="radio" name="is_marriage" value="0" checked>否
                                 </div>
                             </div>
 
                             <div class="am-form-group">
+                                <label for="s_username" class="am-u-sm-3 am-form-label">是否串</label>
+                                <div class="am-u-sm-9">
+                                    <input type="radio" name="is_weekend" value="1">是
+                                    <input type="radio" name="is_weekend" value="0" checked>否
+                                </div>
+                            </div>
+                            <div class="am-form-group">
                                 <div class="am-u-sm-9 am-u-sm-push-3">
-                                    <button type="button" class="am-btn am-btn-primary" onclick="validate()">添加信息</button>
+                                    <input type="submit" class="am-btn am-btn-primary" name="" value="添加人员">
                                 </div>
                             </div>
                         </form>

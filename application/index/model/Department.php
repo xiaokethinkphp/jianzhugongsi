@@ -42,4 +42,10 @@ class Department extends Model
         $where['id'] = $id;
         Department::where($where)->delete();
     }
+
+    // 与人员的一对多关联模型
+    public function person()
+    {
+        return $this->hasMany("Person");
+    }
 }
