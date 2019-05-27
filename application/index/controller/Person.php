@@ -16,6 +16,8 @@ class Person extends Common
         $departmentAll = $departmentModel->order("order")->all();
         $departmentGet = $departmentModel->get($department_id)?$departmentModel->get($department_id):$departmentAll[0];
         $this->assign("departmentAll",$departmentAll);
+        // $departmentGet->person;
+        // dump($departmentGet);
         $this->assign("departmentGet",$departmentGet);
         return view();
     }

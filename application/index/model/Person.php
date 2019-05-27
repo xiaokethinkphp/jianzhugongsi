@@ -9,7 +9,7 @@ class Person extends Model
 {
     public function department()
     {
-        return $this->belongsTo("Person");
+        return $this->belongsTo("Department");
     }
 
     public function getIsMarriageAttr($value)
@@ -22,5 +22,11 @@ class Person extends Model
     {
         $is_weekend = [0=>"不",1=>"串"];
         return $is_weekend[$value];
+    }
+
+    // 人员与假期的一对多关系
+    public function vacation()
+    {
+        return $this->hasMany("Vacation");
     }
 }
