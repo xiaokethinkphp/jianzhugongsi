@@ -12,12 +12,13 @@ class Person extends Model
         return $this->belongsTo("Department");
     }
 
+    // 是否结婚的获取器
     public function getIsMarriageAttr($value)
     {
         $is_marriage = [0=>"未婚",1=>"已婚"];
         return $is_marriage[$value];
     }
-
+    // 是否串的获取器
     public function getIsWeekendAttr($value)
     {
         $is_weekend = [0=>"不",1=>"串"];

@@ -64,6 +64,8 @@
                                             <th class="table-type">单位</th>
                                             <th>婚否</th>
                                             <th>串否</th>
+                                            <th>总假期</th>
+                                            <th>已完成</th>
                                             <th class="table-author am-hide-sm-only">休假情况</th>
                                             <th class="table-author am-hide-sm-only">操作</th>
                                         </tr>
@@ -77,7 +79,16 @@
                                             <td>{$departmentGet.name}</td>
                                             <td>{$vo.is_marriage}</td>
                                             <td>{$vo.is_weekend}</td>
-                                            <td class="am-hide-sm-only">。。。</td>
+                                            <td>{$vo.total_vacation}</td>
+                                            <td>{$vo.finished_vacation}</td>
+                                            <td class="am-hide-sm-only">
+                                                {volist name="$vo.vacation" id="vo1"}
+                                                {$vo1.from_date|date="Y年m月d日"}至{$vo1.to_date|date="Y年m月d日"}</br>
+                                                类型：{$vo1.type}&nbsp;&nbsp;&nbsp;
+                                                状态：{$vo1.status}&nbsp;&nbsp;&nbsp;
+                                                已完成：{$vo1.finished_day}天<hr>
+                                                {/volist}
+                                            </td>
                                             <td class="am-hide-sm-only">
                                                 <a href="{:url('vacation/add',array('id'=>$vo.id))}" class="am-btn am-btn-success">添加假期</a>
                                                 <a href="{:url('person/upd',array('id'=>$vo.id))}" class="am-btn am-btn-warning">修改</a>
