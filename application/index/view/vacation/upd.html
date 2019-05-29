@@ -1,0 +1,183 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>{$title}</title>
+    <meta name="description" content="这是一个 index 页面">
+    <meta name="keywords" content="index">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <link rel="icon" type="image/png" href="__STATIC__/assets/i/favicon.png">
+    <link rel="apple-touch-icon-precomposed" href="__STATIC__/assets/i/app-icon72x72@2x.png">
+    <meta name="apple-mobile-web-app-title" content="Amaze UI" />
+    <link rel="stylesheet" href="__STATIC__/assets/css/amazeui.min.css" />
+    <link rel="stylesheet" href="__STATIC__/assets/css/admin.css">
+    <link rel="stylesheet" href="__STATIC__/assets/css/app.css">
+</head>
+
+<body data-type="generalComponents">
+    {include file="common/header"/}
+
+    {include file="common/left"/}
+    <div class="tpl-content-wrapper">
+
+        <div class="tpl-portlet-components">
+            <div class="portlet-title">
+                <div class="caption font-green bold">
+                    <span class="am-icon-code"></span> 修改休假
+                </div>
+                <div class="tpl-portlet-input tpl-fz-ml">
+                    <div class="portlet-input input-small input-inline">
+                        <div class="input-icon right">
+                            <input type="hidden" class="form-control form-control-solid" placeholder="搜索...">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tpl-block ">
+
+                <div class="am-g tpl-amazeui-form">
+                    <div class="am-u-sm-12 am-u-md-9">
+                        <form class="am-form am-form-horizontal" id="my_form" method="post" action="{:url('vacation/upd')}">
+                            <input type="hidden" name="id" value="{$vacationGet.id}">
+                            <input type="hidden" name="person_id" value="{$vacationGet.person_id}">
+                            <div class="am-form-group">
+                                <label  class="am-u-sm-3 am-form-label"></label>
+                                <div class="am-u-sm-9">
+                                    <small id="state" style="color: #F7B824;font-size: 16px;"></small>
+                                </div>
+
+                            </div>
+                            <div class="am-form-group">
+                                <label for="s_card" class="am-u-sm-3 am-form-label">姓名</label>
+                                <div class="am-u-sm-9">
+                                    <input type="text" value="{$vacationGet.person.name}" readonly>
+                                </div>
+                            </div>
+                            <div class="am-form-group">
+                                <label for="s_g_id" class="am-u-sm-3 am-form-label">所属单位</label>
+                                <div class="am-u-sm-9">
+                                    <input type="text" value="{$vacationGet.person.department.name}" readonly>
+                                </div>
+                            </div>
+                            <div class="am-form-group">
+                                <label for="s_username" class="am-u-sm-3 am-form-label">是否结婚</label>
+                                <div class="am-u-sm-9">
+                                    <input type="text" value="{$vacationGet.person.is_marriage}" readonly>
+                                </div>
+                            </div>
+
+                            <div class="am-form-group">
+                                <label for="s_username" class="am-u-sm-3 am-form-label">是否串</label>
+                                <div class="am-u-sm-9">
+                                    <input type="text" value="{$vacationGet.person.is_weekend}" readonly>
+                                </div>
+                            </div>
+
+                            <div class="am-form-group">
+                                <label for="s_g_id" class="am-u-sm-3 am-form-label">假期类型</label>
+                                <div class="am-u-sm-9">
+                                    <select class="am-input-sm am-radius" name="type">
+                                        <option value="1"
+                                        {if $vacationGet.type == '休假'}
+                                            selected
+                                        {/if}
+                                        >休假</option>
+                                        <option value="2"
+                                        {if $vacationGet.type == '事假'}
+                                            selected
+                                        {/if}
+                                        >事假</option>
+                                        <option value="3"
+                                        {if $vacationGet.type == '婚假'}
+                                            selected
+                                        {/if}
+                                        >婚假</option>
+                                        <option value="4"
+                                        {if $vacationGet.type == '产假'}
+                                            selected
+                                        {/if}
+                                        >产假</option>
+                                        <option value="5"
+                                        {if $vacationGet.type == '其它'}
+                                            selected
+                                        {/if}
+                                        >其它</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="am-form-group">
+                                    <label for="l_begintime" class="am-u-sm-3 am-form-label">起始时间 <span class="tpl-form-line-small-title"></span></label>
+                                    <div class="am-u-sm-4">
+                                        <input type="text" name="from_date" id="l_begintime" value="{$vacationGet.from_date}" class="am-form-field tpl-form-no-bg" placeholder="开始时间" data-am-datepicker="" />
+                                        <input type="text" name="to_date" id="l_endtime"  value="{$vacationGet.to_date}" class="am-form-field tpl-form-no-bg" placeholder="结束时间" data-am-datepicker="" />
+                                    </div>
+                                    <div class="am-u-sm-4">
+                                </div>
+                            </div>
+                            <div class="am-form-group">
+                                <label for="s_g_id" class="am-u-sm-3 am-form-label">休假年份（默认当年）</label>
+                                <div class="am-u-sm-9">
+                                    <select class="am-input-sm am-radius" name="year">
+                                        {for start="$currentYear-1" end="$currentYear+2"}
+                                        <option value="{$i}"
+                                        {if $i==$vacationGet.year}
+                                        selected
+                                        {/if}
+                                        >{$i}</option>
+                                        {/for}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="am-form-group">
+                                <div class="am-u-sm-9 am-u-sm-push-3">
+                                    <input type="submit" class="am-btn am-btn-primary" name="" value="修改假期">
+                                </div>
+                            </div>
+
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <script src="__STATIC__/assets/js/jquery.min.js"></script>
+    <script src="__STATIC__/assets/js/amazeui.min.js"></script>
+    <script src="__STATIC__/assets/js/app.js"></script>
+    <script src="__STATIC__/assets/js/jquery.validate.min.js"></script>
+    <script type="text/javascript">
+        $().ready(function(){
+            $("#my_form").validate({
+                rules:{
+                    from_date:{
+                        required:true,
+                    },
+                    to_date:{
+                        required:true,
+                    }
+                },
+                messages:{
+                    from_date:{
+                        required:"请输入开始时间",
+                    },
+                    to_date:{
+                        required:"请输入结束时间"
+                    }
+                }
+            })
+        })
+    </script>
+
+</body>
+
+</html>

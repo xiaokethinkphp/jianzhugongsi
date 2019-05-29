@@ -18,7 +18,7 @@ class Vacation extends Common
             if (!$post) {
                 $this->error("数据错误","person/lst");
             }
-            dump($post);
+            // dump($post);
             $validate = validate("Vacation");
             if (!$validate->check($post)) {
                 $this->error($validate->getError());
@@ -84,7 +84,6 @@ class Vacation extends Common
             // }
             // $value->finished_vacation = $finished_day;
             // $value->save();
-            // $value->save();
         // }
         $list = $personModel::withSum("vacation","finished_day")->select();
         foreach ($list as $key => $value) {
@@ -94,5 +93,45 @@ class Vacation extends Common
             }
         }
         $this->success("数据更新成功","index/index");
+    }
+
+    // 假期修改
+    public function upd($id)
+    {
+        if (request()->isPost()) {
+            $post = input("post.");
+            if (!$post) {
+                $this->error("数据错误","person/lst");
+            }
+            $validate = validate("Vacation");
+            if (!$validate->check($post)) {
+                $this->error($validate->getError(),"person/lst");
+            }
+            $vacationModel = model("Vacation");
+            $vacationUpdResult = $vacationModel->isUpdate(true)->save($post);
+            if ($vacationUpdResult!==false) {
+                $this->success("假期修改成功","person/lst");
+            } else {
+                $this->error("假期修改失败","person/lst");
+            }
+
+        } else {
+            $vacationModel = model("vacation");
+            $vacationGet = $vacationModel->get($id);
+            if (!$vacationGet) {
+                $this->error("假期数据不存在","person/lst");
+            }
+            $title = "假期修改";
+            $this->assign("title",$title);
+            $vacationGet->person;
+            $vacationGet['person']->department;
+            $this->assign("vacationGet",$vacationGet);
+
+            $currentYear = date("Y");
+            $this->assign("currentYear",$currentYear);
+            return view();
+            // dump($vacationGet);
+        }
+
     }
 }

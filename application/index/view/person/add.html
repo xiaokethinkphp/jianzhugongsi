@@ -80,6 +80,14 @@
                                     <input type="radio" name="is_weekend" value="0" checked>否
                                 </div>
                             </div>
+
+                            <div class="am-form-group">
+                                <label for="total_vacation" class="am-u-sm-3 am-form-label">休假总天数</label>
+                                <div class="am-u-sm-9">
+                                    <input type="text" name="total_vacation" id="total_vacation" value="30" placeholder="请输入休假总天数">
+                                </div>
+                            </div>
+
                             <div class="am-form-group">
                                 <div class="am-u-sm-9 am-u-sm-push-3">
                                     <input type="submit" class="am-btn am-btn-primary" name="" value="添加人员">
@@ -111,11 +119,17 @@
                             type:"post"
                         }
                     },
+                    total_vacation:{
+                        required:true,
+                    }
                 },
                 messages:{
                     name:{
                         required:"请输入人员姓名",
                         remote:"该人员已存在，请确认是否有重名情况"
+                    },
+                    total_vacation:{
+                        required:"请输入休假总天数"
                     }
                 }
             })

@@ -29,6 +29,10 @@ class Person extends Common
     {
         if (request()->isPost()) {
             $post = input("post.");
+            $validate = validate("person");
+            if (!$validate->check($post)) {
+                $this->error($validate->getError());
+            }
             $personModel = model("Person");
             $personAddResult = $personModel->save($post);
             if ($personAddResult) {
@@ -52,9 +56,9 @@ class Person extends Common
     {
         if (request()->isAjax()) {
             $post = input("post.");
-            return validate("person")->check($post);
+            return validate("person")->scene("name")->check($post);
         } else {
-            // code...
+            $this->redirect("person/lst");
         }
 
     }

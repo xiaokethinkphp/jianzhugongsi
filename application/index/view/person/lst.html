@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html>
 
@@ -86,7 +87,9 @@
                                                 {$vo1.from_date|date="Y年m月d日"}至{$vo1.to_date|date="Y年m月d日"}</br>
                                                 类型：{$vo1.type}&nbsp;&nbsp;&nbsp;
                                                 状态：{$vo1.status}&nbsp;&nbsp;&nbsp;
-                                                已完成：{$vo1.finished_day}天<hr>
+                                                已完成：{$vo1.finished_day}天<br>
+                                                <a class="am-btn am-btn-warning am-btn-sm" href="{:url('vacation/upd',array('id'=>$vo1.id))}">修改</a>
+                                                <a class="am-btn am-btn-danger am-btn-sm">删除</a><hr>
                                                 {/volist}
                                             </td>
                                             <td class="am-hide-sm-only">
