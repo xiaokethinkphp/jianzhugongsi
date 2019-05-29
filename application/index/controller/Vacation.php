@@ -26,9 +26,9 @@ class Vacation extends Common
                 $vacationModel = model("Vacation");
                 $vacationAddResult = $vacationModel->save($post);
                 if ($vacationAddResult) {
-                    $this->success("假期添加成功","department/lst");
+                    $this->success("假期添加成功","person/lst");
                 } else {
-                    $this->error("假期添加失败","department/lst");
+                    $this->error("假期添加失败","person/lst");
                 }
 
             }

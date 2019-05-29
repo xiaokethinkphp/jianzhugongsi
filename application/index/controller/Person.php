@@ -93,4 +93,22 @@ class Person extends Common
         }
 
     }
+
+    // 删除人员
+    public function del($id='')
+    {
+        $personModel = model("person");
+        $personGet = $personModel->get($id,"vacation");
+        if (!$personGet) {
+            $this->error("该人员不存在");
+        }
+        $personDelResult = $personGet->together("vacation")->delete();
+        if ($personDelResult) {
+            $this->success("人员删除成功","person/lst");
+        } else {
+            $this->error("人员删除失败","person/lst");
+        }
+
+
+    }
 }
