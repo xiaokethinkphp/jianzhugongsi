@@ -18,7 +18,7 @@
                     <span class="am-icon-refresh"></span>更新数据
                 </a>
             </li>
-            <li class="am-dropdown" data-am-dropdown data-am-dropdown-toggle>
+            <!-- <li class="am-dropdown" data-am-dropdown data-am-dropdown-toggle>
                 <a class="am-dropdown-toggle tpl-header-list-link" href="javascript:;">
                     <span class="am-icon-refresh"></span> 消息
                 </a>
@@ -27,22 +27,20 @@
                 <a class="am-dropdown-toggle tpl-header-list-link" href="javascript:;">
                     <span class="am-icon-calendar"></span> 进度
                 </a>
-            </li>
+            </li> -->
             <li class="am-hide-sm-only"><a href="javascript:;" id="admin-fullscreen" class="tpl-header-list-link"><span class="am-icon-arrows-alt"></span> <span class="admin-fullText">开启全屏</span></a></li>
 
             <li class="am-dropdown" data-am-dropdown data-am-dropdown-toggle>
                 <a class="am-dropdown-toggle tpl-header-list-link" href="javascript:;">
-                    <span class="tpl-header-list-user-nick">*************</span><span class="tpl-header-list-user-ico">
+                    <span class="tpl-header-list-user-nick">{$Think.session.admin.name}</span><span class="tpl-header-list-user-ico">
                     <!--<img src="__STATIC__/assets/img/user01.png">-->
                 </span>
                 </a>
                 <ul class="am-dropdown-content">
-                    <!--<li><a href="#"><span class="am-icon-bell-o"></span> 资料</a></li>-->
-                    <li><a href="/index.php/admin/admin/apply"><span class="am-icon-cog"></span> 设置</a></li>
-                    <li><a href="/index.php/admin/login/logout"><span class="am-icon-power-off"></span> 退出</a></li>
+                    <li><a href="{:url('admin/upd',array('id'=>$Think.session.admin.id))}"><span class="am-icon-cog"></span>修改密码</a></li>
+                    <li><a href="{:url('login/logout')}"><span class="am-icon-power-off"></span> 退出</a></li>
                 </ul>
             </li>
-            <li><a href="/index.php?c=login&a=logout" title="退出系统" class="tpl-header-list-link"><span class="am-icon-sign-out tpl-header-list-ico-out-size"></span></a></li>
         </ul>
     </div>
 </header>

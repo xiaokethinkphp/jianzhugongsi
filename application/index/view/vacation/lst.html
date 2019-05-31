@@ -47,29 +47,27 @@
                                     <thead>
                                         <tr>
                                             <th class="table-id" style="display:none">ID</th>
-                                            <th class="table-title">年度</th>
+                                            <th class="table-title">部门</th>
                                             <th class="table-type">总人数</th>
                                             <th>修满人数</th>
                                             <th>未修满人数</th>
-                                            <th>一天未修人数</th>
                                             <th class="table-author am-hide-sm-only">操作</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-
+                                        {volist name="list" id="vo"}
                                         <tr>
-
-                                            <td>2019</td>
-                                            <td>390</td>
-                                            <td>111</td>
-                                            <td>1</td>
-                                            <td class="am-hide-sm-only">0</td>
+                                            <td>{$vo.name}</td>
+                                            <td>{$vo.person_total}</td>
+                                            <td>{$vo.person_count}</td>
+                                            <td>{$vo.person_total-$vo.person_count}</td>
                                             <td class="am-hide-sm-only">
-                                                <a href="#" class="am-btn am-btn-success">查看</a>
+                                                <a href="{:url('person/lst',array('department_id'=>$vo.id))}" class="am-btn am-btn-success">查看</a>
                                                 <a href="" class="am-btn am-btn-warning">修改</a>
                                                 <a href="#" class="am-btn am-btn-danger">删除</a>
                                             </td>
                                         </tr>
+                                        {/volist}
                                     </tbody>
                                 </table>
                                 <!--<div class="am-cf">-->

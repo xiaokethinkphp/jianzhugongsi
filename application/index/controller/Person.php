@@ -29,6 +29,8 @@ class Person extends Common
     {
         if (request()->isPost()) {
             $post = input("post.");
+            // $post['total_vacation'] = (int)$post['total_vacation'];
+            // dump($post);die;
             $validate = validate("person");
             if (!$validate->check($post)) {
                 $this->error($validate->getError());

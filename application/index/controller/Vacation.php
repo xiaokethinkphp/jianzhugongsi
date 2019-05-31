@@ -7,6 +7,13 @@ class Vacation extends Common
     {
         $title = "休假总览";
         $this->assign("title",$title);
+
+        $departmentModel = model("department");
+        $list = $departmentModel->order('order')->withCount(['person'=>function($query){
+            $query->where('finished_vacation','>=','total_vacation');
+            // $alias = 'finished';
+        }])->withCount(['person'=>'person_total'])->select();
+        $this->assign("list",$list);
         return view();
     }
 
@@ -55,6 +62,7 @@ class Vacation extends Common
     // 更新数据
     public function updAll()
     {
+
         $current_date = date("Y-m-d");
         $vacationModel = model("Vacation");
         $vacationAll = $vacationModel->all();
