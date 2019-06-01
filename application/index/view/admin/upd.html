@@ -1,6 +1,5 @@
 <!doctype html>
 <html>
-
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -20,7 +19,6 @@
 
 <body data-type="generalComponents">
     {include file="common/header"/}
-
     {include file="common/left"/}
 
     <div class="tpl-content-wrapper">
@@ -35,16 +33,9 @@
 
                 <div class="am-g tpl-amazeui-form">
 
-
                     <div class="am-u-sm-12 am-u-md-9">
                         <form class="am-form am-form-horizontal" id="my_form" method="post" action="{:url('admin/upd')}">
                             <input type="hidden" value="id" name="{$adminFind.id}">
-                            <div class="am-form-group">
-                                <label for="" class="am-u-sm-3 am-form-label"></label>
-                                <div class="am-u-sm-9">
-                                    <small id="state" style="color: #F7B824;font-size: 16px;"></small>
-                                </div>
-                            </div>
                             <div class="am-form-group">
                                 <label for="name" class="am-u-sm-3 am-form-label">管理员名称</label>
                                 <div class="am-u-sm-9">
@@ -58,21 +49,21 @@
                                 </div>
                             </div>
                             <div class="am-form-group">
-                                <label for="check_old_password" class="am-u-sm-3 am-form-label">新密码</label>
+                                <label for="password" class="am-u-sm-3 am-form-label">新密码</label>
                                 <div class="am-u-sm-9">
-                                    <input type="password" name="check_old_password" id="check_old_password" placeholder="输入新密码">
+                                    <input type="password" name="password" id="password" placeholder="输入新密码">
                                 </div>
                             </div>
                             <div class="am-form-group">
-                                <label for="password" class="am-u-sm-3 am-form-label">确认密码</label>
+                                <label for="check_password" class="am-u-sm-3 am-form-label">确认密码</label>
                                 <div class="am-u-sm-9">
-                                    <input type="password" name="password" id="password" placeholder="再次输入新密码">
+                                    <input type="password" name="check_password" id="check_password" placeholder="再次输入新密码">
                                 </div>
                             </div>
 
                             <div class="am-form-group">
                                 <div class="am-u-sm-9 am-u-sm-push-3">
-                                    <a type="submit" class="am-btn am-btn-primary"">修改信息</a>
+                                    <a type="submit" class="am-btn am-btn-primary">修改信息</a>
                                 </div>
                             </div>
                         </form>
