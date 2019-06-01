@@ -35,11 +35,11 @@
 
                     <div class="am-u-sm-12 am-u-md-9">
                         <form class="am-form am-form-horizontal" id="my_form" method="post" action="{:url('admin/upd')}">
-                            <input type="hidden" value="id" name="{$adminFind.id}">
+                            <input type="hidden" value="{$adminFind.id}" name="id">
                             <div class="am-form-group">
                                 <label for="name" class="am-u-sm-3 am-form-label">管理员名称</label>
                                 <div class="am-u-sm-9">
-                                    <input type="text" id="name" value="{$adminFind.name}" readonly>
+                                    <input type="text" id="name" value="{$adminFind.name}" name="name" readonly>
                                 </div>
                             </div>
                             <div class="am-form-group">
@@ -63,7 +63,7 @@
 
                             <div class="am-form-group">
                                 <div class="am-u-sm-9 am-u-sm-push-3">
-                                    <a type="submit" class="am-btn am-btn-primary">修改信息</a>
+                                    <input type="submit" class="am-btn am-btn-primary" value="修改密码">
                                 </div>
                             </div>
                         </form>
@@ -83,10 +83,26 @@
                     old_password:{
                         required:true,
                     },
+                    password:{
+                        required:true,
+                        minlength:6
+                    },
+                    check_password:{
+                        required:true,
+                        equalTo:"#password"
+                    }
                 },
                 messages:{
                     old_password:{
                         required:"请输入原密码",
+                    },
+                    password:{
+                        required:"请输入新密码",
+                        minlength:"密码至少为6位数"
+                    },
+                    check_password:{
+                        required:"请再次输入新密码",
+                        equalTo:"两次密码不一致"
                     }
                 }
             })
