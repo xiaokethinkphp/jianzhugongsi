@@ -19,7 +19,7 @@ class Login extends Controller
                 session("admin",$adminFind);
                 $this->success("登录成功","index/index");
             } else {
-                $this->error('用户名或密码错误，请重新登录'.'login/index');
+                $this->error('用户名或密码错误，请重新登录','login/index');
             }
 
         } else {
