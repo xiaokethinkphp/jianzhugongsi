@@ -81,7 +81,7 @@
                                             <td>{$vo.is_marriage}</td>
                                             <td>{$vo.is_weekend}</td>
                                             <td>{$vo.total_vacation}</td>
-                                            <td>{$vo.finished_vacation}</td>
+                                            <td>{$vo.finished_vacation}({$vo.finished_vacation*100/$vo.total_vacation|round=2}%)</td>
                                             <td class="am-hide-sm-only">
                                                 {volist name="$vo.vacation" id="vo1"}
                                                 {$vo1.from_date|date="Y年m月d日"}至{$vo1.to_date|date="Y年m月d日"}</br>

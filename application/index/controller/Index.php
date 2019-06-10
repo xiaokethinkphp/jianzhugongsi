@@ -10,8 +10,19 @@ class Index extends Common
         return view();
     }
 
-    public function hello($name = 'ThinkPHP5')
+    public function compute()
     {
-        return 'hello,' . $name;
+        if (request()->isAjax()) {
+            $post = input("post.");
+            if (!is_numeric($post['old'])||!is_numeric($post['new'])) {
+                return array("status"=>"0","result"=>"计算错误");
+            }
+            $final = ($post['old']/12)*$post['month']+($post['new']/12)*(12-$post['month']);
+            return array("status"=>"1","result"=>ceil($final));
+        } else {
+            $title = "辅助计算";
+            $this->assign("title",$title);
+            return view();
+        }
     }
 }
